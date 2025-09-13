@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if systemctl is-active --quiet wg-quick@cp-vpn; then
+  sudo -u dsde DISPLAY=:0 XAUTHORITY=/home/dsde/.Xauthority zenity --info --text="VPN already connected. No action taken." || true
+  exit 0
+fi
+
 systemctl stop wg-quick@cp-vpn
 rm /etc/wireguard/cp-vpn.conf
 
