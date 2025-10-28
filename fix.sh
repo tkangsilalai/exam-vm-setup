@@ -19,12 +19,6 @@ fi
 # Activate dsde env
 conda activate dsde || { echo "❌ Failed to activate env 'dsde'"; exit 1; }
 
-# -------------------------------------------------------------
-# Ensure pip and base Streamlit are available via conda
-# -------------------------------------------------------------
-echo "[2/9] Installing pip and Streamlit base from conda-forge..."
-conda install -n dsde -y pip
-conda install -c conda-forge -y streamlit
 
 # -------------------------------------------------------------
 # Packaging + dependency fixes
@@ -78,6 +72,15 @@ python -m pip install --no-cache-dir \
 # -------------------------------------------------------------
 # Verification
 # -------------------------------------------------------------
+
+
+# -------------------------------------------------------------
+# Ensure pip and base Streamlit are available via conda
+# -------------------------------------------------------------
+echo "[2/9] Installing pip and Streamlit base from conda-forge..."
+conda install -n dsde -y pip
+conda install -c conda-forge -y streamlit
+
 python - <<'PY'
 print("🔍 Verifying modules ...")
 import IPython, prompt_toolkit, argcomplete, jupyter_client, streamlit, packaging, typing_extensions
